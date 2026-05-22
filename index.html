@@ -57,21 +57,47 @@
 
     <header><h1>FixPC Pro</h1></header>
 
-    <section id="hero">
-        <h2>¿Tu equipo falla? Nosotros lo reparamos.</h2>
-        <p>Selecciona tu servicio y cotiza directamente por WhatsApp.</p>
+<section id="hero" style="text-align: center; padding: 4rem 1rem 6rem;">
+    <h2 style="color: #fff; margin-bottom: 1rem;">¿Tu equipo falla? Nosotros lo reparamos.</h2>
+    <p style="color: #a1a1aa; margin-bottom: 2rem;">Selecciona tu servicio y cotiza directamente por WhatsApp.</p>
+    
+    <div style="margin-bottom: 25px;">
+        <select id="servicio-select" onchange="updateLink()" style="background: #1e2025; color: white; padding: 14px 25px; border-radius: 50px; border: 1px solid #4facfe; outline: none; cursor: pointer; min-width: 280px; font-size: 1rem;">
+            <option value="Reparación General">🛠️ Reparación General</option>
+            <option value="Mantenimiento Preventivo">🧹 Mantenimiento Preventivo</option>
+            <option value="Upgrade a SSD">🚀 Upgrade a SSD</option>
+            <option value="Instalación de Software">💻 Instalación de Software</option>
+            <option value="Rescate de Datos">💾 Rescate de Datos</option>
+        </select>
+    </div>
+    
+    <a href="#" id="btn-cotizar" class="btn-whatsapp" onclick="trackConversion()">¡Cotizar este servicio!</a>
+</section>
+
+<script>
+    const numero = "525526724181";
+
+    function updateLink() {
+        const select = document.getElementById('servicio-select');
+        const btn = document.getElementById('btn-cotizar');
+        const servicio = select.value;
+        const msg = encodeURIComponent(`Hola, me interesa el servicio de: ${servicio}. ¿Podrían darme informes?`);
         
-        <div style="margin-bottom: 25px;">
-            <select id="servicio-select" style="background: #1e2025; color: white; padding: 12px 20px; border-radius: 50px; border: 1px solid #4facfe; outline: none; margin-bottom: 15px; cursor: pointer;">
-                <option value="Reparación General">🛠️ Reparación General</option>
-                <option value="Mantenimiento Preventivo">🧹 Mantenimiento Preventivo</option>
-                <option value="Upgrade a SSD">🚀 Upgrade a SSD</option>
-                <option value="Instalación de Software">💻 Instalación de Software</option>
-                <option value="Rescate de Datos">💾 Rescate de Datos</option>
-            </select>
-        </div>
-        <a href="#" id="btn-cotizar" class="btn-whatsapp">¡Cotizar este servicio!</a>
-    </section>
+        // Detección de dispositivo: usa 'whatsapp://' en móviles para abrir la App
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const url = isMobile ? `whatsapp://send?phone=${numero}&text=${msg}` : `https://wa.me/${numero}?text=${msg}`;
+        
+        btn.href = url;
+    }
+
+    function trackConversion() {
+        console.log("Usuario intentó cotizar: " + document.getElementById('servicio-select').value);
+        // Aquí podrías agregar un evento de Google Analytics o Facebook Pixel
+    }
+
+    // Inicializar al cargar
+    updateLink();
+</script>
 
     <section id="servicios" class="section-alt">
         <h2 style="text-align: center; margin-top: 0;">Nuestros Servicios</h2>
