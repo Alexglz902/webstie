@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixPC Pro | Reparación de Equipos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
+
+        :root {
+            --bg-dark: #0a0c0e;
+            --section-bg: #0f1115; /* Nuevo tono para diferenciar secciones */
+            --card-bg: rgba(25, 27, 30, 0.5);
+            --text-main: #d1d5db;
+            --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --hover-gradient: linear-gradient(135deg, #4facfe 0%, #8e2de2 100%);
+        }
+
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0; 
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(79, 172, 254, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(142, 45, 226, 0.05) 0%, transparent 20%);
+            background-attachment: fixed;
+        }
+
+        /* Mejora visual: Separación de secciones */
+        section { padding: 5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .section-alt { background-color: var(--section-bg); }
+
+        header { padding: 3rem 2rem; text-align: center; background: rgba(10, 12, 14, 0.8); backdrop-filter: blur(10px); }
+        h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -2px; color: #fff; margin: 0; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        #hero { text-align: center; padding: 4rem 1rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 2rem 0; max-width: 1300px; margin: auto; }
+        
+        .card { background: var(--card-bg); backdrop-filter: blur(15px); padding: 2.5rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.03); transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); position: relative; overflow: hidden; cursor: pointer; }
+        .card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(79, 172, 254, 0.1); border-color: rgba(79, 172, 254, 0.5); }
+        .card h3 { color: #fff; margin-top: 0; font-size: 1.5rem; font-weight: 700; }
+        .card ul { padding-left: 20px; color: #a1a1aa; font-size: 0.95rem; margin-top: 15px; }
+        .card li { margin-bottom: 8px; }
+
+        .btn-whatsapp { display: inline-block; background: var(--accent-gradient); color: white; padding: 18px 36px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.4s; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4); border: none; cursor: pointer; }
+        .btn-whatsapp:hover { background: var(--hover-gradient); transform: scale(1.05); }
+
+        .faq-section { max-width: 800px; margin: 0 auto; padding: 5rem 1rem; }
+        .faq-item { background: rgba(25, 27, 30, 0.3); margin-bottom: 18px; border-radius: 16px; cursor: pointer; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.03); }
+        .faq-answer { display: none; padding-top: 18px; color: #a1a1aa; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <header><h1>FixPC Pro</h1></header>
+
+    <section id="hero">
+        <h2>¿Tu equipo falla? Nosotros lo reparamos.</h2>
+        <p>Selecciona tu servicio y cotiza directamente por WhatsApp.</p>
+        
+        <div style="margin-bottom: 25px;">
+            <select id="servicio-select" style="background: #1e2025; color: white; padding: 12px 20px; border-radius: 50px; border: 1px solid #4facfe; outline: none; margin-bottom: 15px; cursor: pointer;">
+                <option value="Reparación General">🛠️ Reparación General</option>
+                <option value="Mantenimiento Preventivo">🧹 Mantenimiento Preventivo</option>
+                <option value="Upgrade a SSD">🚀 Upgrade a SSD</option>
+                <option value="Instalación de Software">💻 Instalación de Software</option>
+                <option value="Rescate de Datos">💾 Rescate de Datos</option>
+            </select>
+        </div>
+        <a href="#" id="btn-cotizar" class="btn-whatsapp">¡Cotizar este servicio!</a>
+    </section>
+
+    <section id="servicios" class="section-alt">
+        <h2 style="text-align: center; margin-top: 0;">Nuestros Servicios</h2>
+        <div class="grid">
+            <div class="card"><h3>Upgrade a SSD</h3><ul><li>¿PC lenta? Revívela con un SSD.</li><li>Arranque en menos de 15 seg.</li><li>Velocidad inmediata en programas.</li></ul></div>
+            <div class="card"><h3>Venta de Hardware</h3><ul><li>Discos SSD, RAM y accesorios.</li><li>Componentes 100% garantizados.</li><li>Asesoría para elegir lo mejor.</li></ul></div>
+            
+            <div class="card" onclick="toggleFaq(this)">
+                <h3>Mantenimiento Preventivo 
+                    <span style="font-size: 0.8rem; color: #4facfe; display: block; margin-top: 5px; font-weight: 400;">Ver detalles ↓</span>
+                </h3>
+                <ul>
+                    <li>Evita el sobrecalentamiento.</li>
+                    <li>Limpieza interna profunda.</li>
+                    <li>Cambio de pasta térmica premium.</li>
+                </ul>
+                <div class="faq-answer" style="text-align: left; font-size: 0.9rem; cursor: default;">
+                    <p><strong>¿Qué es?</strong> Servicio de salud para tu PC para extender su vida útil.</p>
+                    <p><strong>Incluye:</strong></p>
+                    <ul>
+                        <li>Limpieza física de ventiladores y disipadores.</li>
+                        <li>Pasta térmica de alto rendimiento.</li>
+                        <li>Inspección de voltajes y conexiones.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card"><h3>BIOS y Hardware</h3><ul><li>Fallas de encendido crítico.</li><li>Recuperación de firmware.</li><li>Diagnóstico a nivel componente.</li></ul></div>
+            <div class="card"><h3>Instalación de Software</h3><ul><li>Software esencial y ofimática.</li><li>Optimización del sistema.</li><li>Eliminación de virus y malware.</li></ul></div>
+            <div class="card"><h3>Redes y Wi-Fi</h3><ul><li>Optimización de señal.</li><li>Configuración de repetidores.</li><li>Diagnóstico de conexión.</li></ul></div>
+            <div class="card"><h3>Rescate de Datos</h3><ul><li>Recuperación de archivos.</li><li>Diagnóstico de discos fallidos.</li><li>Respaldos seguros.</li></ul></div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2 style="text-align: center; margin-top: 0;">Preguntas Frecuentes</h2>
+        <div class="faq-item" onclick="toggleFaq(this)"><strong>¿Ofrecen servicio a domicilio?</strong><div class="faq-answer">Sí, recogemos tu equipo en todo Querétaro.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><strong>¿Cómo manejan los presupuestos?</strong><div class="faq-answer">Diagnosticamos y te presentamos un presupuesto detallado antes de reparar nada.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><strong>¿Tienen garantía?</strong><div class="faq-answer">Todos nuestros servicios incluyen garantía por escrito.</div></div>
+    </section>
+
+    <footer style="background: rgba(0,0,0,0.2); padding: 3rem 1rem; text-align: center;">
+        <h3>FixPC Pro | Tu Aliado Tecnológico</h3>
+        <p style="color: #72767d;">📍 Querétaro, México | 📧 tuemail@ejemplo.com</p>
+        <p style="color: #4f545c; font-size: 0.8rem;">&copy; 2026 FixPC Pro. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleFaq(el) {
+            const answer = el.querySelector('.faq-answer');
+            if (answer) answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+        }
+
+        const select = document.getElementById('servicio-select');
+        const btn = document.getElementById('btn-cotizar');
+        const numero = "525526724181";
+
+        function updateLink() {
+            const msg = `Hola, quiero cotizar el servicio de: ${select.value}. ¿Me dan informes?`;
+            btn.href = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
+        }
+
+        select.addEventListener('change', updateLink);
+        updateLink();
+    </script>
+</body>
+</html>
