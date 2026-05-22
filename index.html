@@ -59,41 +59,40 @@
 
 <section id="hero" style="text-align: center; padding: 4rem 1rem 6rem; max-width: 600px; margin: auto;">
     <h2 style="color: #fff; margin-bottom: 1rem;">¿Tu equipo falla?</h2>
-    <p style="color: #a1a1aa; margin-bottom: 2rem;">Obtén una cotización estimada y contacta a un experto.</p>
+    <p style="color: #a1a1aa; margin-bottom: 2rem;">Selecciona tu servicio y recibe una atención prioritaria.</p>
     
     <div style="background: rgba(25, 27, 30, 0.6); padding: 2rem; border-radius: 20px; border: 1px solid #4facfe;">
-        <label style="display: block; margin-bottom: 15px; font-size: 0.9rem; color: #4facfe; text-transform: uppercase; letter-spacing: 1px;">Selecciona el problema:</label>
+        <label style="display: block; margin-bottom: 15px; font-size: 0.9rem; color: #4facfe; text-transform: uppercase; letter-spacing: 1px;">¿Qué necesitas?</label>
         
         <select id="servicio-select" onchange="actualizarCotizacion()" style="width: 100%; background: #0a0c0e; color: white; padding: 15px; border-radius: 12px; border: 1px solid #333; outline: none; cursor: pointer; font-size: 1rem; margin-bottom: 20px;">
-            <option value="Reparación General" data-precio="desde $500">🛠️ Reparación General</option>
-            <option value="Mantenimiento Preventivo" data-precio="$450">🧹 Mantenimiento Preventivo</option>
-            <option value="Upgrade a SSD" data-precio="desde $800">🚀 Upgrade a SSD</option>
-            <option value="Instalación de Software" data-precio="$350">💻 Instalación de Software</option>
-            <option value="Rescate de Datos" data-precio="desde $1,200">💾 Rescate de Datos</option>
+            <option value="Reparación General" data-tiempo="Tiempo: 24-48 hrs">🛠️ Reparación General</option>
+            <option value="Mantenimiento Preventivo" data-tiempo="Tiempo: 3-5 hrs">🧹 Mantenimiento Preventivo</option>
+            <option value="Upgrade a SSD" data-tiempo="Tiempo: 2-4 hrs">🚀 Upgrade a SSD</option>
+            <option value="Instalación de Software" data-tiempo="Tiempo: 1-2 hrs">💻 Instalación de Software</option>
+            <option value="Rescate de Datos" data-tiempo="Tiempo: 48-72 hrs">💾 Rescate de Datos</option>
         </select>
 
         <div style="margin-bottom: 25px;">
-            <span style="color: #a1a1aa;">Presupuesto estimado:</span>
-            <div id="display-precio" style="font-size: 2rem; font-weight: 700; color: #fff; margin: 10px 0;">$450</div>
+            <div id="display-tiempo" style="font-size: 1.2rem; font-weight: 600; color: #4facfe; margin: 10px 0; padding: 10px; background: rgba(79,172,254,0.1); border-radius: 8px;">Tiempo: 3-5 hrs</div>
         </div>
 
-        <a href="#" id="btn-cotizar" class="btn-whatsapp" style="width: 100%; display: block; box-sizing: border-box;">¡Solicitar esta cotización!</a>
+        <a href="#" id="btn-cotizar" class="btn-whatsapp" style="width: 100%; display: block; box-sizing: border-box;">¡Solicitar atención personalizada!</a>
     </div>
 </section>
 
 <script>
     function actualizarCotizacion() {
         const select = document.getElementById('servicio-select');
-        const display = document.getElementById('display-precio');
+        const display = document.getElementById('display-tiempo');
         const btn = document.getElementById('btn-cotizar');
         
-        // Obtener precio del atributo data
-        const precio = select.options[select.selectedIndex].getAttribute('data-precio');
-        display.innerText = precio;
+        // Obtener tiempo del atributo data
+        const tiempo = select.options[select.selectedIndex].getAttribute('data-tiempo');
+        display.innerText = tiempo;
         
         // Actualizar enlace de WhatsApp
         const numero = "525526724181";
-        const msg = encodeURIComponent(`Hola, quiero cotizar: ${select.value} (Precio ref: ${precio}). ¿Me das más detalles?`);
+        const msg = encodeURIComponent(`Hola, me interesa el servicio de: ${select.value}. ¿Podrían darme más información sobre los costos y requisitos?`);
         
         const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         btn.href = isMobile ? `whatsapp://send?phone=${numero}&text=${msg}` : `https://wa.me/${numero}?text=${msg}`;
